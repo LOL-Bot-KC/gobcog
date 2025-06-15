@@ -72,7 +72,7 @@
     "The King of Mages": [
         {"parts": 3, "att": 0, "cha": 0, "int": 500, "dex": 200, "luck": 200, "statmult": 1.0, "xpmult": 1.0, "cpmult": 1.0},
         {"parts": 7, "att": 0, "cha": 0, "int": 500, "dex": 200, "luck": 200, "statmult": 1.0, "xpmult": 2.25, "cpmult": 1.25},
-        {"parts": 11, "att": 0, "cha": 0, "int": 1000, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 2.25, "cpmult": 1.5}
+        {"parts": 10, "att": 0, "cha": 0, "int": 1000, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 2.25, "cpmult": 1.5}
     ],
     "Morganas Vengeance": [
         {"parts": 3, "att": 0, "cha": 0, "int": 250, "dex": 100, "luck": 150, "statmult": 1.0, "xpmult": 1.0, "cpmult": 1.0},
@@ -87,11 +87,14 @@
     "King Titan": [
         {"parts": 3, "att": 500, "cha": 0, "int": 0, "dex": 200, "luck": 200, "statmult": 1.0, "xpmult": 1.0, "cpmult": 1.0},
         {"parts": 7, "att": 500, "cha": 0, "int": 0, "dex": 200, "luck": 200, "statmult": 1.0, "xpmult": 2.25, "cpmult": 1.5},
-        {"parts": 11, "att": 1000, "cha": 0, "int": 0, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 2.25, "cpmult": 1.5}
+        {"parts": 10, "att": 1000, "cha": 0, "int": 0, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 2.25, "cpmult": 1.5}
     ],
     "High Emperor": [
         {"parts": 3, "att": 0, "cha": 500, "int": 0, "dex": 200, "luck": 200, "statmult": 1.0, "xpmult": 1.0, "cpmult": 1.0},
         {"parts": 7, "att": 0, "cha": 500, "int": 0, "dex": 300, "luck": 300, "statmult": 1.0, "xpmult": 1.0, "cpmult": 1.0},
-        {"parts": 11, "att": 1000, "cha": 1000, "int": 0, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 1.0, "cpmult": 1.0}
+        {"parts": 10, "att": 1000, "cha": 1000, "int": 0, "dex": 300, "luck": 300, "statmult": 1.25, "xpmult": 1.0, "cpmult": 1.0}
+    ],
+    "Book of the Dead": [
+        {"parts": 1, "att": 200, "cha": 200, "int": 200, "dex": -1500, "luck": -1500, "statmult": 1.4, "xpmult": 1.0, "cpmult": 0.2}
     ]
 }

@@ -32,7 +32,7 @@
     "Golden Dragonplate Pants": {"slot": ["legs"], "set": "Heavenswheel", "parts": 5, "cha": 9, "int": 2, "luck": -4, "rarity": "set"},
     "Golden Dragonplate Thread": {"slot": ["neck"], "set": "Heavenswheel", "parts": 5, "cha": 29, "rarity": "set"},
 
-    "Panified Saronite Armor": {"slot": ["belt"], "set": "Titan", "parts": 100, "att": 100, "luck": 50, "dex": 50, "rarity": "set"},
+    "Panified Saronite Armor": {"slot": ["belt"], "set": "Titan", "parts": 10, "att": 100, "luck": 50, "dex": 50, "rarity": "set"},
     "Panified Saronite Battle Axe": {"slot": ["right", "left"], "set": "Titan", "parts": 10, "att": 100, "luck": 50, "dex": 50, "rarity": "set"},
     "Panified Saronite Gloves": {"slot": ["gloves"], "set": "Titan", "parts": 10, "att": 100, "luck": 50, "dex": 50, "rarity": "set"},
     "Panified Saronite Helmet": {"slot": ["head"], "set": "Titan", "parts": 10, "att": 100, "luck": 50, "dex": 50, "rarity": "set"},

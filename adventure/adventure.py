@@ -864,7 +864,8 @@ class Adventure(
             if transcended:
                 # Hide Transcended on Easy mode
                 # new_challenge = challenge.replace("Ascended", "")
-                timer = 60 * 2
+                timer = 60 * 2 # i don't wanna fuck this up so here it is
+            timer = 60 * 2
             no_monster = random.randint(0, 100) == 25
         self._sessions[ctx.guild.id] = GameSession(
             ctx=ctx,

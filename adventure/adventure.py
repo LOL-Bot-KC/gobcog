@@ -841,8 +841,7 @@ class Adventure(
         if easy_mode:
             if transcended:
                 # Shows Transcended on Easy mode
-                # new_challenge = _("Transcended {}").format(challenge.replace("Ascended", ""))
-                no_monster = False
+                new_challenge = _("Transcended {}").format(challenge.replace("Ascended", ""))
             no_monster = False
             if monster_roster[challenge]["boss"]:
                 timer = 60 * 2

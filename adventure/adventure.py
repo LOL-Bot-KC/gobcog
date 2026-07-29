@@ -550,6 +550,7 @@ class Adventure(
 
         adventure_msg = _("You feel adventurous, {}?").format(bold(ctx.author.display_name))
         print("stats range: {}".format(self._adv_results.get_stat_range(ctx)))
+        print("dynamic monster stats: {}".format(self._dynamic_monster_stats(ctx, self.MONSTERS.get(challenge, {}))))
         try:
             reward, participants = await self._simple(ctx, adventure_msg, challenge)
             await self.config.guild(ctx.guild).cooldown.set(time.time())

@@ -549,6 +549,7 @@ class Adventure(
             challenge = None
 
         adventure_msg = _("You feel adventurous, {}?").format(bold(ctx.author.display_name))
+        print("stats range: {}".format(self._adv_results.get_stat_range(ctx)))
         try:
             reward, participants = await self._simple(ctx, adventure_msg, challenge)
             await self.config.guild(ctx.guild).cooldown.set(time.time())

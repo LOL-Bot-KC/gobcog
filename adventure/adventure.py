@@ -797,7 +797,7 @@ class Adventure(
             log.exception("Error with the new character sheet", exc_info=exc)
             failed = True
 
-        transcended_chance = 5
+        transcended_chance = random.randint(0, 10)
         theme = await self.config.theme()
         extra_monsters = await self.config.themes.all()
         extra_monsters = extra_monsters.get(theme, {}).get("monsters", {})

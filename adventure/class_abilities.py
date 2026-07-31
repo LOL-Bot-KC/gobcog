@@ -718,9 +718,9 @@ class ClassAbilities(AdventureMixin):
                                 attr=session.attribute,
                                 hp_symbol=self.emojis.hp,
                                 hp=humanize_number(int(hp)),
-                                pdef=humanize_number(int(pdef)),
-                                mdef=humanize_number(int(mdef)),
-                                cdef=humanize_number(int(cdef)),
+                                pdef=humanize_number(round(pdef, 2)),
+                                mdef=humanize_number(round(mdef, 2)),
+                                cdef=humanize_number(round(cdef, 2)),
                                 dipl_symbol=self.emojis.dipl,
                                 dipl=humanize_number(int(dipl)),
                                 trans=f" (**Transcended**) {self.emojis.skills.psychic}"
@@ -749,17 +749,17 @@ class ClassAbilities(AdventureMixin):
                                 attr=session.attribute,
                                 hp_symbol=self.emojis.hp,
                                 hp=humanize_number(int(hp)),
-                                pdef=humanize_number(int(pdef)),
-                                mdef=humanize_number(int(mdef)),
-                                cdef=humanize_number(int(cdef))
+                                pdef=humanize_number(round(pdef, 2)),
+                                mdef=humanize_number(round(mdef, 2)),
+                                cdef=humanize_number(round(cdef, 2))
                             )
                             self._sessions[ctx.guild.id].exposed = True
                         elif roll > 0.65:
                             msg += _("This monster is **a{attr} {challenge}**. pdef: {pdef}, mdef: {mdef}\n").format(
                                 challenge=session.challenge,
                                 attr=session.attribute,
-                                pdef=humanize_number(int(pdef)),
-                                mdef=humanize_number(int(mdef))
+                                pdef=humanize_number(round(pdef, 2)),
+                                mdef=humanize_number(round(mdef, 2))
                             )
                             self._sessions[ctx.guild.id].exposed = True
                         elif roll > 0.5:

@@ -708,16 +708,19 @@ class ClassAbilities(AdventureMixin):
                             magic_roll = 0.6
                             diplo_roll = 0.4
 
-                        if roll == 1:
+                        if roll >= 0.85: # don't use hard mode, should be the default for max roll
                             hp = int(hp * self.ATTRIBS[session.attribute][0] * session.monster_stats)
                             dipl = int(diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats)
                             msg += _(
-                                "This monster is **a{attr} {challenge}** ({hp_symbol} {hp}/{dipl_symbol} {dipl}){trans}.\n"
+                                "This monster is **a{attr} {challenge}** ({hp_symbol} {hp}/{dipl_symbol} {dipl}){trans}. pdef: {pdef}, mdef: {mdef}, cdef: {cdef}\n"
                             ).format(
                                 challenge=session.challenge,
                                 attr=session.attribute,
                                 hp_symbol=self.emojis.hp,
                                 hp=humanize_number(int(hp)),
+                                pdef=humanize_number(int(pdef)),
+                                mdef=humanize_number(int(mdef)),
+                                cdef=humanize_number(int(cdef))
                                 dipl_symbol=self.emojis.dipl,
                                 dipl=humanize_number(int(dipl)),
                                 trans=f" (**Transcended**) {self.emojis.skills.psychic}"
@@ -725,33 +728,38 @@ class ClassAbilities(AdventureMixin):
                                 else f"{self.emojis.skills.psychic}",
                             )
                             self._sessions[ctx.guild.id].exposed = True
-                        elif roll >= 0.95:
+                        # elif roll >= 0.95: (don't need this, we don't use hard mode)
+                            # hp = hp * self.ATTRIBS[session.attribute][0] * session.monster_stats
+                            # dipl = diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats
+                            # msg += _(
+                                #  "This monster is **a{attr} {challenge}** ({hp_symbol} {hp}/{dipl_symbol} {dipl}).\n"
+                            # ).format(
+                                # challenge=session.challenge,
+                                # attr=session.attribute,
+                                # hp_symbol=self.emojis.hp,
+                                # hp=humanize_number(int(hp)),
+                                # dipl_symbol=self.emojis.dipl,
+                                # dipl=humanize_number(int(dipl)),
+                            # )
+                            self._sessions[ctx.guild.id].exposed = True
+                        elif roll >= 0.75:
                             hp = hp * self.ATTRIBS[session.attribute][0] * session.monster_stats
-                            dipl = diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats
-                            msg += _(
-                                "This monster is **a{attr} {challenge}** ({hp_symbol} {hp}/{dipl_symbol} {dipl}).\n"
-                            ).format(
+                            msg += _("This monster is **a{attr} {challenge}** ({hp_symbol} {hp}). pdef: {pdef}, mdef: {mdef}, cdef: {cdef}\n").format(
                                 challenge=session.challenge,
                                 attr=session.attribute,
                                 hp_symbol=self.emojis.hp,
                                 hp=humanize_number(int(hp)),
-                                dipl_symbol=self.emojis.dipl,
-                                dipl=humanize_number(int(dipl)),
+                                pdef=humanize_number(int(pdef)),
+                                mdef=humanize_number(int(mdef)),
+                                cdef=humanize_number(int(cdef))
                             )
                             self._sessions[ctx.guild.id].exposed = True
-                        elif roll >= 0.90:
-                            hp = hp * self.ATTRIBS[session.attribute][0] * session.monster_stats
-                            msg += _("This monster is **a{attr} {challenge}** ({hp_symbol} {hp}).\n").format(
+                        elif roll > 0.65:
+                            msg += _("This monster is **a{attr} {challenge}**. pdef: {pdef}, mdef: {mdef}\n").format(
                                 challenge=session.challenge,
                                 attr=session.attribute,
-                                hp_symbol=self.emojis.hp,
-                                hp=humanize_number(int(hp)),
-                            )
-                            self._sessions[ctx.guild.id].exposed = True
-                        elif roll > 0.75:
-                            msg += _("This monster is **a{attr} {challenge}**.\n").format(
-                                challenge=session.challenge,
-                                attr=session.attribute,
+                                pdef=humanize_number(int(pdef)),
+                                mdef=humanize_number(int(mdef))
                             )
                             self._sessions[ctx.guild.id].exposed = True
                         elif roll > 0.5:
@@ -762,39 +770,39 @@ class ClassAbilities(AdventureMixin):
 
                         if roll >= physical_roll:
                             if pdef >= 1.5:
-                                msg += _("Swords bounce off this monster as it's skin is **almost impenetrable!**\n")
+                                msg += _("Swords bounce off this monster as it's skin is **almost impenetrable!** >1.5\n")
                             elif pdef >= 1.25:
-                                msg += _("This monster has **extremely tough** armour!\n")
+                                msg += _("This monster has **extremely tough** armour! >1.25\n")
                             elif pdef > 1:
-                                msg += _("Swords don't cut this monster **quite as well!**\n")
+                                msg += _("Swords don't cut this monster **quite as well!** >1\n")
                             elif pdef > 0.75:
-                                msg += _("This monster is **soft and easy** to slice!\n")
+                                msg += _("This monster is **soft and easy** to slice! >0.75\n")
                             else:
-                                msg += _("Swords slice through this monster like a **hot knife through butter!**\n")
+                                msg += _("Swords slice through this monster like a **hot knife through butter!** <0.75\n")
                         if roll >= magic_roll:
                             if mdef >= 1.5:
-                                msg += _("Magic? Pfft, magic is **no match** for this creature!\n")
+                                msg += _("Magic? Pfft, magic is **no match** for this creature! >1.5\n")
                             elif mdef >= 1.25:
-                                msg += _("This monster has **substantial magic resistance!**\n")
+                                msg += _("This monster has **substantial magic resistance!** >1.25\n")
                             elif mdef > 1:
-                                msg += _("This monster has increased **magic resistance!**\n")
+                                msg += _("This monster has increased **magic resistance!** >1\n")
                             elif mdef > 0.75:
-                                msg += _("This monster's hide **melts to magic!**\n")
+                                msg += _("This monster's hide **melts to magic!** >0.75\n")
                             else:
-                                msg += _("Magic spells are **hugely effective** against this monster!\n")
+                                msg += _("Magic spells are **hugely effective** against this monster! <0.75\n")
                         if roll >= diplo_roll:
                             if cdef >= 1.5:
                                 msg += _(
-                                    "You think you are charismatic? Pfft, this creature **couldn't care less** for what you want to say!\n"
+                                    "You think you are charismatic? Pfft, this creature **couldn't care less** for what you want to say! >1.5\n"
                                 )
                             elif cdef >= 1.25:
-                                msg += _("Any attempts to communicate with this creature will be **very difficult!**\n")
+                                msg += _("Any attempts to communicate with this creature will be **very difficult!** >1.25\n")
                             elif cdef > 1:
-                                msg += _("Any attempts to talk to this creature will be **difficult!**\n")
+                                msg += _("Any attempts to talk to this creature will be **difficult!** >1\n")
                             elif cdef > 0.75:
-                                msg += _("This creature **can be reasoned** with!\n")
+                                msg += _("This creature **can be reasoned** with! >0.75\n")
                             else:
-                                msg += _("This monster can be **easily influenced!**\n")
+                                msg += _("This monster can be **easily influenced!** <0.75\n")
 
                     if msg:
                         image = None

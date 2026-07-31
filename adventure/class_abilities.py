@@ -720,7 +720,7 @@ class ClassAbilities(AdventureMixin):
                                 hp=humanize_number(int(hp)),
                                 pdef=humanize_number(int(pdef)),
                                 mdef=humanize_number(int(mdef)),
-                                cdef=humanize_number(int(cdef))
+                                cdef=humanize_number(int(cdef)),
                                 dipl_symbol=self.emojis.dipl,
                                 dipl=humanize_number(int(dipl)),
                                 trans=f" (**Transcended**) {self.emojis.skills.psychic}"

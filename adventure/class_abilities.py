@@ -761,12 +761,12 @@ class ClassAbilities(AdventureMixin):
                             )
                             if roll >= physical_roll:
                                 msg += _("It has pdef: {pdef}.\n").format(pdef=humanize_number(round(pdef, 2)))
-                            elif roll >= magic_roll:
+                            if roll >= magic_roll:
                                 msg += _("It has mdef: {mdef}.\n").format(mdef=humanize_number(round(mdef, 2)))
-                            elif roll >= diplo_roll:
+                            if roll >= diplo_roll:
                                 msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
                             self._sessions[ctx.guild.id].exposed = True
-                            
+
                         elif roll > 0.5:
                             msg += _("This monster is **a {challenge}**.\n").format(
                                 challenge=session.challenge,

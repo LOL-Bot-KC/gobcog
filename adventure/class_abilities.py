@@ -699,16 +699,25 @@ class ClassAbilities(AdventureMixin):
                             physical_roll = 0.4
                             magic_roll = 0.6
                             diplo_roll = 0.8
+                            physical_roll2 = 0.5
+                            magic_roll2 = 0.7
+                            diplo_roll2 = 0.9
                         elif choice == "magic":
                             physical_roll = 0.8
                             magic_roll = 0.4
                             diplo_roll = 0.6
+                            physical_roll2 = 0.9
+                            magic_roll2 = 0.5
+                            diplo_roll2 = 0.7
                         else:
                             physical_roll = 0.8
                             magic_roll = 0.6
                             diplo_roll = 0.4
+                            physical_roll2 = 0.9
+                            magic_roll2 = 0.7
+                            diplo_roll2 = 0.5
 
-                        if roll >= 0.85: # don't use hard mode, should be the default for max roll
+                        if roll >= 0.9: # don't use hard mode, should be the default for max roll
                             hp = int(hp * self.ATTRIBS[session.attribute][0] * session.monster_stats)
                             dipl = int(diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats)
                             msg += _(
@@ -742,7 +751,7 @@ class ClassAbilities(AdventureMixin):
                                 # dipl=humanize_number(int(dipl)),
                             # )
                             self._sessions[ctx.guild.id].exposed = True
-                        elif roll >= 0.75:
+                        elif roll >= 0.8:
                             hp = hp * self.ATTRIBS[session.attribute][0] * session.monster_stats
                             msg += _("This monster is **a{attr} {challenge}** ({hp_symbol} {hp}).\n").format(
                                 challenge=session.challenge,
@@ -757,16 +766,16 @@ class ClassAbilities(AdventureMixin):
                             if roll >= diplo_roll:
                                 msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
                             self._sessions[ctx.guild.id].exposed = True
-                        elif roll > 0.65:
+                        elif roll >= 0.7:
                             msg += _("This monster is **a{attr} {challenge}**.\n").format(
                                 challenge=session.challenge,
                                 attr=session.attribute,
                             )
-                            if roll >= physical_roll:
+                            if roll >= physical_roll2:
                                 msg += _("It has pdef: {pdef}.\n").format(pdef=humanize_number(round(pdef, 2)))
-                            if roll >= magic_roll:
+                            if roll >= magic_roll2:
                                 msg += _("It has mdef: {mdef}.\n").format(mdef=humanize_number(round(mdef, 2)))
-                            if roll >= diplo_roll:
+                            if roll >= diplo_roll2:
                                 msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
                             self._sessions[ctx.guild.id].exposed = True
 

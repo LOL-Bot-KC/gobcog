@@ -696,28 +696,28 @@ class ClassAbilities(AdventureMixin):
                         diplo = session.monster_modified_stats["dipl"]
                         choice = random.choice(["physical", "magic", "diplomacy"])
                         if choice == "physical":
-                            physical_roll = 0.4
-                            magic_roll = 0.6
-                            diplo_roll = 0.8
-                            physical_roll2 = 0.5
-                            magic_roll2 = 0.7
-                            diplo_roll2 = 0.9
+                            physical_roll = 0.42
+                            magic_roll = 0.58
+                            diplo_roll = 0.86
+                            physical_roll2 = 0.75
+                            magic_roll2 = 0.93
+                            diplo_roll2 = 0.98
                         elif choice == "magic":
-                            physical_roll = 0.8
-                            magic_roll = 0.4
-                            diplo_roll = 0.6
-                            physical_roll2 = 0.9
-                            magic_roll2 = 0.5
-                            diplo_roll2 = 0.7
+                            physical_roll = 0.86
+                            magic_roll = 0.42
+                            diplo_roll = 0.58
+                            physical_roll2 = 0.98
+                            magic_roll2 = 0.75
+                            diplo_roll2 = 0.93
                         else:
-                            physical_roll = 0.8
-                            magic_roll = 0.6
-                            diplo_roll = 0.4
-                            physical_roll2 = 0.9
-                            magic_roll2 = 0.7
-                            diplo_roll2 = 0.5
+                            physical_roll = 0.86
+                            magic_roll = 0.58
+                            diplo_roll = 0.42
+                            physical_roll2 = 0.98
+                            magic_roll2 = 0.93
+                            diplo_roll2 = 0.75
 
-                        if roll >= 0.9: # don't use hard mode, should be the default for max roll
+                        if roll >= 0.99: # don't use hard mode, should be the default for max roll
                             hp = int(hp * self.ATTRIBS[session.attribute][0] * session.monster_stats)
                             dipl = int(diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats)
                             msg += _(
@@ -751,21 +751,42 @@ class ClassAbilities(AdventureMixin):
                                 # dipl=humanize_number(int(dipl)),
                             # )
                             self._sessions[ctx.guild.id].exposed = True
-                        elif roll >= 0.8:
+                        elif roll >= 0.95:
                             hp = hp * self.ATTRIBS[session.attribute][0] * session.monster_stats
-                            msg += _("This monster is **a{attr} {challenge}** ({hp_symbol} {hp}).\n").format(
-                                challenge=session.challenge,
-                                attr=session.attribute,
-                                hp_symbol=self.emojis.hp,
-                                hp=humanize_number(int(hp)),
-                                pdef=humanize_number(round(pdef, 2)),
-                                mdef=humanize_number(round(mdef, 2)),
-                            )
-                            if roll >= physical_roll or roll >= magic_roll:
-                                msg += _("It has pdef: {pdef} and mdef: {mdef}.\n").format(pdef=humanize_number(round(pdef, 2)), mdef=humanize_number(round(mdef, 2)))
-                            if roll >= diplo_roll:
-                                msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
-                            self._sessions[ctx.guild.id].exposed = True
+                            dipl = int(diplo * self.ATTRIBS[session.attribute][1] * session.monster_stats)
+                            choose_a_healthbar = random.randint (1,2)
+                            if choose_a_healthbar == 1:
+                                msg += _("This monster is **a{attr} {challenge}** ({hp_symbol} {hp}).\n").format(
+                                    challenge=session.challenge,
+                                    attr=session.attribute,
+                                    hp_symbol=self.emojis.hp,
+                                    hp=humanize_number(int(hp))
+                                )
+                                if roll >= physical_roll2 and roll >= magic_roll2:
+                                    msg += _("It has pdef: {pdef} and mdef: {mdef}.\n").format(pdef=humanize_number(round(pdef, 2)), mdef=humanize_number(round(mdef, 2)))
+                                if roll >= physical_roll2 and not roll >= magic_roll2:
+                                    msg += _("It has pdef: {pdef}.\n").format(pdef=humanize_number(round(pdef, 2)))
+                                if roll >= magic_roll2 and not roll >= physical_roll2:
+                                    msg += _("It has mdef: {mdef}.\n").format(mdef=humanize_number(round(mdef, 2)))
+                                if roll >= diplo_roll2:
+                                    msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
+                                self._sessions[ctx.guild.id].exposed = True
+                            else:
+                                msg += _("This monster is **a{attr} {challenge}** ({dipl_symbol} {dipl}).\n").format(
+                                    challenge=session.challenge,
+                                    attr=session.attribute,
+                                    dipl_symbol=self.emojis.dipl,
+                                    dipl=humanize_number(int(dipl))
+                                )
+                                if roll >= physical_roll2 and roll >= magic_roll2:
+                                    msg += _("It has pdef: {pdef} and mdef: {mdef}.\n").format(pdef=humanize_number(round(pdef, 2)), mdef=humanize_number(round(mdef, 2)))
+                                if roll >= physical_roll2 and not roll >= magic_roll2:
+                                    msg += _("It has pdef: {pdef}.\n").format(pdef=humanize_number(round(pdef, 2)))
+                                if roll >= magic_roll2 and not roll >= physical_roll2:
+                                    msg += _("It has mdef: {mdef}.\n").format(mdef=humanize_number(round(mdef, 2)))
+                                if roll >= diplo_roll2:
+                                    msg += _("It has cdef: {cdef}.\n").format(cdef=humanize_number(round(cdef, 2)))
+                                self._sessions[ctx.guild.id].exposed = True
                         elif roll >= 0.7:
                             msg += _("This monster is **a{attr} {challenge}**.\n").format(
                                 challenge=session.challenge,
